@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img height=250 src="./documents/logo.png"></img>
+  <img height=250 src="https://drive.google.com/uc?id=1wus3oTkNOSdCJu0ftFZBwuC27XG5m99S"></img>
 
   # Hebe
 
