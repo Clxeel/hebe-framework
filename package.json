@@ -1,0 +1,21 @@
+{
+  "name": "hebe-framework",
+  "version": "0.0.0",
+  "description": "A simple framwork for the Eris Discord library.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Clxeel",
+  "license": "MIT",
+  "dependencies": {
+    "colorette": "^2.0.20",
+    "eris": "^0.17.2",
+    "moment": "^2.29.4"
+  },
+  "keywords": [
+    "discord",
+    "eris",
+    "framework"
+  ]
+}

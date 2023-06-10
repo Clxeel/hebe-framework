@@ -1,0 +1,5 @@
+# Ignore a blackhole and the folder for development
+node_modules/
+
+# Ignore package locks
+package-lock.json
