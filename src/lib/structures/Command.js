@@ -1,5 +1,16 @@
 class Command {
-  constructor(options) {
+  /**
+   * @param {object} options The options of the command
+   * @param {string} options.name The name of the command
+   * @param {string[]} [options.aliases] The aliases of the command
+   * @param {string} [options.description] The description of the command
+   * @param {string} [options.details] The details of the command
+   * @param {string} [options.usage] The usage format of the command
+   * @param {string[]} [options.examples] The examples of the command
+   * @param {boolean} [options.ownerOnly] Whether the command can only be executed by an owner
+   * @param {boolean} [options.nsfw] Whether the command can only be executed in a nsfw channel
+   */
+  constructor(client, options) {
     if (typeof options.name === 'undefined' || options.name.length === 0) throw new Error('You must provide a name for a command.');
     if (typeof options.name !== 'string') throw new TypeError('Command\'s name must be a string.');
 
@@ -24,6 +35,8 @@ class Command {
     if (typeof options.nsfw === 'undefined') options.nsfw === false;
     if (typeof options.nsfw !== 'boolean') throw new TypeError('Command\'s nsfw option must be a boolean.');
   }
+
+  messageRun(message, args) { };
 };
 
 module.exports = Command;

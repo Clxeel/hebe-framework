@@ -1,9 +1,8 @@
 const Eris = require('eris');
 const logger = require('../util/logger');
 
-class HebeClient extends Eris.Client {
+class Client extends Eris.Client {
   /**
-   * Options for the HebeClient
    * @param {string} token The token of the client
    * @param {object} options The options of the client
    * @param {string} options.commandsDirectory The directory where the commands are located
@@ -42,4 +41,4 @@ class HebeClient extends Eris.Client {
   };
 };
 
-module.exports = HebeClient;
+module.exports = Client;
