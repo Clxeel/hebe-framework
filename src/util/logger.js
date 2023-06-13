@@ -1,8 +1,7 @@
-const moment = require('moment');
 const colorette = require('colorette');
 
 function createLog(content, color, type, error = false) {
-  const timestamp = `${moment().format('MMMM Do YYYY hh:mm:ss')}`;
+  const timestamp = `${new Date().toLocaleString({ hourCycle: 'h23' })}`;
   const stream = error ? process.stderr : process.stdout;
 
   const line = `${colorette[color](timestamp)} - ${colorette[color](type)} - ${content}\n`;
