@@ -23,6 +23,7 @@ npm install hebe-framework eris
 ```
 
 ## Example
+### Main file
 ```js
 const { Client } = require('hebe-framework');
 
@@ -38,8 +39,27 @@ const client = new Client('your_bot_token', {
 
 client.connect();
 ```
+### Event file
+```js
+const { Event } = require('hebe-framework');
 
-## To do
+class ReadyEvent extends Event {
+  constructor(client) {
+    super(client, {
+      name: 'ready',
+      once: true
+    });
+  }
+
+  execute(client) {
+    this.client.logger.info('The bot is ready!');
+  };
+};
+
+module.exports = ReadyEvent;
+```
+
+## Planned (or not 🤡)
 - Add slash commands support
 
 ## FAQ
