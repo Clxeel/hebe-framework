@@ -1,4 +1,6 @@
 const Eris = require('eris');
+const fs = require('fs');
+const glob = require('fast-glob');
 const logger = require('../util/logger');
 
 class Client extends Eris.Client {
@@ -35,10 +37,25 @@ class Client extends Eris.Client {
     super(token, options);
 
     this.commands = new Eris.Collection();
-    this.aliases = new Eris.Collection();
     this.categories = [];
     this.logger = logger;
-  };
+
+    this.loadEvents(this.options.eventsDirectory);
+  }
+
+  async loadEvents(directory) {
+    if (!fs.existsSync(directory)) throw new Error(`The command's path ${directory} does not exist.`);
+
+    const files = await glob(`${process.cwd().replace(/\\/g, '/')}/${directory}/**/*.{js,ts}`);
+
+    files.forEach(file => {
+      const event = require(file);
+      const _event = new event(this);
+
+      if (_event.options.once) this.once(_event.options.name, (...args) => _event.execute(...args));
+      else this.on(_event.options.name, (...args) => _event.execute(...args));
+    });
+  }
 };
 
 module.exports = Client;
