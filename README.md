@@ -24,9 +24,9 @@ npm install hebe-framework eris
 
 ## Example
 ```js
-const { HebeClient } = require('hebe-framework');
+const { Client } = require('hebe-framework');
 
-const client = new HebeClient('your_bot_token', {
+const client = new Client('your_bot_token', {
   commandsDirectory: 'src/commands', // The directory of your commands folder
   eventsDirectory: 'src/events', // The directory of you events folder
   prefix: '!', // The prefix used for message commands
