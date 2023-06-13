@@ -10,7 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "colorette": "^2.0.20",
-    "eris": "^0.17.2"
+    "eris": "^0.17.2",
+    "fast-glob": "^3.2.12"
   },
   "keywords": [
     "discord",
