@@ -92,7 +92,7 @@ module.exports = ReadyEvent;
 ```
 
 ## Planned (or not 🤡)
-- Add slash commands support
+- nothing
 
 ## FAQ
 - **Why is this called Hebe?** \
