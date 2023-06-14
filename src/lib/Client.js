@@ -39,11 +39,44 @@ class Client extends Eris.Client {
     this.HebeOptions = options;
     this.logger = logger;
 
-    this.loadEvents(this.options.eventsDirectory);
+    this.registerCommands(this.HebeOptions.commandsDirectory);
+    this.loadEvents(this.HebeOptions.eventsDirectory);
+  }
+
+  async registerCommands(directory) {
+    if (!fs.existsSync(directory)) throw new Error(`The commands path ${directory} does not exist.`);
+
+    const files = await glob(`${process.cwd().replace(/\\/g, '/')}/${directory}/**/*.{js,ts}`);
+    const commandsList = [];
+
+    files.forEach(file => {
+      const command = require(file);
+      const _command = new command(this);
+
+      commandsList.push(_command.command);
+
+      this.on('interactionCreate', interaction => {
+        if (interaction.type === 2) {
+          _command.run(interaction);
+        }
+      });
+    });
+
+    try {
+      this.once('ready', () => {
+        this.bulkEditCommands(commandsList);
+      });
+    }
+    catch (error) {
+      throw new TypeError(error);
+    };
+
+    if (this.HebeOptions.enableDebugLoggings) this.logger.debug(`${commandsList.length} commands have been registered.`);
+    return;
   }
 
   async loadEvents(directory) {
-    if (!fs.existsSync(directory)) throw new Error(`The command's path ${directory} does not exist.`);
+    if (!fs.existsSync(directory)) throw new Error(`The events path ${directory} does not exist.`);
 
     const files = await glob(`${process.cwd().replace(/\\/g, '/')}/${directory}/**/*.{js,ts}`);
     const eventsList = [];
