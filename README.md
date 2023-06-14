@@ -21,6 +21,7 @@
   - [Installation](#installation)
   - [Example](#example)
     - [Main file](#main-file)
+    - [Command file](#command-file)
     - [Event file](#event-file)
   - [Planned (or not 🤡)](#planned-or-not-)
   - [FAQ](#faq)
@@ -42,13 +43,33 @@ const client = new Client('your_bot_token', {
   commandsDirectory: 'src/commands', // The directory of your commands folder
   eventsDirectory: 'src/events', // The directory of your events folder
   prefix: '!', // The prefix used for message commands
-  messageCommands: true, // Whether message commands work
-  slashCommands: false, // Whether slash commands will be registered (currently Hebe does not support slash commands)
+  messageCommands: false, // Whether message commands work (currently Hebe does not support this)
+  slashCommands: true, // Whether slash commands will be registered
   owners: ['your_id'], // The owners of the bot
   enableDebugLoggings: true // You should enable this when developing the bot
 });
 
 client.connect();
+```
+### Command file
+```js
+const { Command } = require('hebe-framework');
+
+class PingCommand extends Command {
+  constructor(client) {
+    super(client, {
+      name: 'ping',
+      description: 'Shows the response speed of the bot.'
+      type: 1
+    });
+  }
+
+  run(interaction) {
+    return interaction.createMessage(`Pong! rtt: \`${interaction.createdAt - Date.now()}ms\``);
+  }
+};
+
+module.exports = PingCommand;
 ```
 ### Event file
 ```js
