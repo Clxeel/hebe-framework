@@ -15,8 +15,8 @@ class Command {
     if (typeof command.name === 'undefined' || command.name.length === 0) throw new Error('You must provide a name for the command.');
     if (typeof command.name !== 'string') throw new TypeError('Command\'s name must be a string.');
 
-    if (typeof command.description === 'undefined' || command.description.length === 0) command.description = 'No description provided.';
-    if (typeof command.description !== 'string') throw new TypeError('Command\'s description must be a string.');
+    if ((typeof command.description === 'undefined' || command.description.length === 0) && command.type === 1) command.description = 'No description provided.';
+    if (typeof command.description !== 'string' && command.type === 1) throw new TypeError('Command\'s description must be a string.');
 
     if (typeof command.options === 'undefined') command.options = [];
     if (!Array.isArray(command.options)) throw new TypeError('Command options must be an array of objects.')
