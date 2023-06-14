@@ -40,7 +40,7 @@ const { Client } = require('hebe-framework');
 
 const client = new Client('your_bot_token', {
   commandsDirectory: 'src/commands', // The directory of your commands folder
-  eventsDirectory: 'src/events', // The directory of you events folder
+  eventsDirectory: 'src/events', // The directory of your events folder
   prefix: '!', // The prefix used for message commands
   messageCommands: true, // Whether message commands work
   slashCommands: false, // Whether slash commands will be registered (currently Hebe does not support slash commands)
