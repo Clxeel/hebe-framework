@@ -25,10 +25,10 @@ class Client extends Eris.Client {
     if (typeof options.prefix === 'undefined') options.prefix = '!';
     if (typeof options.prefix !== 'string') throw new TypeError('Prefix must be a string.');
 
-    if (typeof options.messageCommands === 'undefined') options.messageCommands = true;
+    if (typeof options.messageCommands === 'undefined') options.messageCommands = false;
     if (typeof options.messageCommands !== 'boolean') throw new TypeError('messageCommands option must be a boolean.');
 
-    if (typeof options.slashCommands === 'undefined') options.slashCommands = false;
+    if (typeof options.slashCommands === 'undefined') options.slashCommands = true;
     if (typeof options.slashCommands !== 'boolean') throw new TypeError('slashCommands option must be a boolean.');
 
     if (typeof options.enableDebugLoggings === 'undefined') options.enableDebugLoggings = false;
