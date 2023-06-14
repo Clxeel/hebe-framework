@@ -36,8 +36,7 @@ class Client extends Eris.Client {
 
     super(token, options);
 
-    this.commands = new Eris.Collection();
-    this.categories = [];
+    this.HebeOptions = options;
     this.logger = logger;
 
     this.loadEvents(this.options.eventsDirectory);
@@ -47,6 +46,7 @@ class Client extends Eris.Client {
     if (!fs.existsSync(directory)) throw new Error(`The command's path ${directory} does not exist.`);
 
     const files = await glob(`${process.cwd().replace(/\\/g, '/')}/${directory}/**/*.{js,ts}`);
+    const eventsList = [];
 
     files.forEach(file => {
       const event = require(file);
@@ -54,7 +54,12 @@ class Client extends Eris.Client {
 
       if (_event.options.once) this.once(_event.options.name, (...args) => _event.execute(...args));
       else this.on(_event.options.name, (...args) => _event.execute(...args));
+
+      return eventsList.push(_event.options.name);
     });
+
+    if (this.HebeOptions.enableDebugLoggings) this.logger.debug(`${eventsList.length} events have been loaded.`);
+    return;
   }
 };
 
