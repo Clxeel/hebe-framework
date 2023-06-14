@@ -1,6 +1,6 @@
 {
   "name": "hebe-framework",
-  "version": "0.0.0",
+  "version": "0.1.1",
   "description": "A simple framwork for the Eris Discord library.",
   "main": "src/index.js",
   "scripts": {
