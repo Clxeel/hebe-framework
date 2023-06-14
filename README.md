@@ -14,9 +14,9 @@
 
 ---
 
-### Table of Content
+### Table of Contents
 - [Hebe](#hebe)
-    - [Table of Content](#table-of-content)
+    - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Installation](#installation)
   - [Example](#example)
@@ -24,6 +24,7 @@
     - [Event file](#event-file)
   - [Planned (or not 🤡)](#planned-or-not-)
   - [FAQ](#faq)
+
 ## Introduction
 Hebe is a Discord bot framework built with [eris](https://github.com/abalabahaha/eris). It is probably coding like shit but it works (and it has a small unpacking size :D).
 
