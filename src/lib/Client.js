@@ -45,6 +45,7 @@ class Client extends Eris.Client {
 
   async registerCommands(directory) {
     if (!fs.existsSync(directory)) throw new Error(`The commands path ${directory} does not exist.`);
+    if (!this.HebeOptions.slashCommands) return;
 
     const files = await glob(`${process.cwd().replace(/\\/g, '/')}/${directory}/**/*.{js,ts}`);
     const commandsList = [];
