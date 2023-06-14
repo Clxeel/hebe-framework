@@ -1,5 +1,8 @@
+const Client = require('../Client')
+
 class Command {
   /**
+   * @param {Client} client   
    * @param {object} options The options of the command
    * @param {string} options.name The name of the command
    * @param {string[]} [options.aliases] The aliases of the command
@@ -11,6 +14,9 @@ class Command {
    * @param {boolean} [options.nsfw] Whether the command can only be executed in a nsfw channel
    */
   constructor(client, options) {
+    this.client = client;
+    this.options = options;
+    // Le client ne détecte pas la création d'un array pour les aliases s'il n'y en a pas
     if (typeof options.name === 'undefined' || options.name.length === 0) throw new Error('You must provide a name for a command.');
     if (typeof options.name !== 'string') throw new TypeError('Command\'s name must be a string.');
 
@@ -36,7 +42,9 @@ class Command {
     if (typeof options.nsfw !== 'boolean') throw new TypeError('Command\'s nsfw option must be a boolean.');
   }
 
-  messageRun(message, args) { };
+  run() {
+    this.client.logger.warn(`The ${this.options.name} command has no "run" method.`);
+  }
 };
 
 module.exports = Command;

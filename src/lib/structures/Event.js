@@ -18,7 +18,7 @@ class Event {
   }
 
   execute() {
-    this.client.logger.warn(`The ${this.options.name} event has an empty execute method.`);
+    this.client.logger.warn(`The ${this.options.name} event has no "execute" method.`);
   }
 };
 
