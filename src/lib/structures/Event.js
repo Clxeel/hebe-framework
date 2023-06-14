@@ -13,7 +13,7 @@ class Event {
     if (typeof options.name === 'undefined' || options.name.length === 0) throw new Error('You must provide a name for an event.');
     if (typeof options.name !== 'string') throw new TypeError('Event\'s name must be a string.');
 
-    if (typeof options.once === 'undefined') options.once === false;
+    if (typeof options.once === 'undefined') options.once = false;
     if (typeof options.once !== 'boolean') throw new TypeError('Event\'s once option must be a boolean.');
   }
 
