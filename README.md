@@ -14,8 +14,11 @@
 
 ---
 
+# Hebe v1.1.0 SHOULD BE RELEASED SOON WITH MESSAGE COMMANDS, BE PATIENT
+
 ### Table of Contents
 - [Hebe](#hebe)
+- [Hebe v1.1.0 SHOULD BE RELEASED SOON WITH MESSAGE COMMANDS, BE PATIENT](#hebe-v110-should-be-released-soon-with-message-commands-be-patient)
     - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Installation](#installation)
