@@ -12,25 +12,8 @@
 
 </div>
 
----
-
-# Hebe v1.1.0 SHOULD BE RELEASED SOON WITH MESSAGE COMMANDS, BE PATIENT
-
-### Table of Contents
-- [Hebe](#hebe)
-- [Hebe v1.1.0 SHOULD BE RELEASED SOON WITH MESSAGE COMMANDS, BE PATIENT](#hebe-v110-should-be-released-soon-with-message-commands-be-patient)
-    - [Table of Contents](#table-of-contents)
-  - [Introduction](#introduction)
-  - [Installation](#installation)
-  - [Example](#example)
-    - [Main file](#main-file)
-    - [Command file](#command-file)
-    - [Event file](#event-file)
-  - [Planned (or not 🤡)](#planned-or-not-)
-  - [FAQ](#faq)
-
 ## Introduction
-Hebe is a Discord bot framework built with [eris](https://github.com/abalabahaha/eris). It is probably coding like shit but it works (and it has a small unpacking size :D).
+Hebe is a Discord bot framework built with [eris](https://github.com/abalabahaha/eris). It is probably coding like shit but it works (and it has a small unpacking size :D). If you want to help me in this project, you can join [the discord server](https://discord.gg/xmS2eMwgrf).
 
 ## Installation
 ```sh
@@ -38,64 +21,33 @@ npm install hebe-framework eris
 ```
 
 ## Example
-### Main file
 ```js
+// Main file
 const { Client } = require('hebe-framework');
 
 const client = new Client('your_bot_token', {
+  erisOptions: { // Client options provided by Eris
+    intents: ['all']
+  },
   commandsDirectory: 'src/commands', // The directory of your commands folder
   eventsDirectory: 'src/events', // The directory of your events folder
+  messageCommands: true, // Whether message commands work
+  applicationCommands: true, // Whether application commands work
   prefix: '!', // The prefix used for message commands
-  messageCommands: false, // Whether message commands work (currently Hebe does not support this)
-  slashCommands: true, // Whether slash commands will be registered
   owners: ['your_id'], // The owners of the bot
   enableDebugLoggings: true // You should enable this when developing the bot
 });
 
+client.on('error', err => {
+  client.logger.error(err);
+});
+
 client.connect();
 ```
-### Command file
-```js
-const { Command } = require('hebe-framework');
-
-class PingCommand extends Command {
-  constructor(client) {
-    super(client, {
-      name: 'ping',
-      description: 'Shows the response speed of the bot.'
-      type: 1
-    });
-  }
-
-  run(interaction) {
-    return interaction.createMessage(`Pong! rtt: \`${interaction.createdAt - Date.now()}ms\``);
-  }
-};
-
-module.exports = PingCommand;
-```
-### Event file
-```js
-const { Event } = require('hebe-framework');
-
-class ReadyEvent extends Event {
-  constructor(client) {
-    super(client, {
-      name: 'ready',
-      once: true
-    });
-  }
-
-  execute(client) {
-    this.client.logger.info('The bot is ready!');
-  };
-};
-
-module.exports = ReadyEvent;
-```
+*You can find more examples in the [examples folder](https://github.com/Clxeel/hebe-framework/tree/main/examples).*
 
 ## Planned (or not 🤡)
-- nothing
+- I'm waiting for your feedback so there is nothing planned for the moment
 
 ## FAQ
 - **Why is this called Hebe?** \
